@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Photos
 
 class AlbumListViewController: UIViewController {
     
     //MARK: - Property
     @IBOutlet weak var tableView: UITableView!
+//    var fetchResult: PHFetchResult<PHAsset> = PHFetchResult<PHAsset>()
+//    let imageManager: PHCachingImageManager = PHCachingImageManager()
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -37,10 +40,11 @@ extension AlbumListViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumListTableViewCell") as? AlbumListTableViewCell {
-                cell.selectionStyle = .none
+            cell.selectionStyle = .none
+            
             return cell
         }
-            return UITableViewCell()
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

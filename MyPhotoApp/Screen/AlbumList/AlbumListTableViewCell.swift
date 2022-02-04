@@ -9,11 +9,18 @@ import UIKit
 
 class AlbumListTableViewCell: UITableViewCell {
 
+    //MARK: - Property
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var albumTitleLabel: UILabel!
+    @IBOutlet weak var albumCountLabel: UILabel!
+    
+    //MARK: - LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    //MARK: - Action
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
