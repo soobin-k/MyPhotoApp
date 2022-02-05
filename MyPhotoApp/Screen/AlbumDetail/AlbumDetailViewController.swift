@@ -45,18 +45,6 @@ class AlbumDetailViewController: UIViewController {
         self.collectionView.register(UINib(nibName: "AlbumDetailCollectionViewCell", bundle: nil),
                                      forCellWithReuseIdentifier: "AlbumDetailCollectionViewCell")
     }
-    
-    // 파일 정보 알림창
-    func alertFileInfo(fileName: String, fileSize: String) {
-      let message = "파일명 : \(fileName) \n파일 크기 : \(fileSize)"
-        
-      let alert = UIAlertController(title: "사진 정보", message: message, preferredStyle: .alert)
-        
-      let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-      alert.addAction(confirmAction)
-
-      present(alert, animated: true, completion: nil)
-    }
 }
 
 // MARK: - Extension
@@ -103,10 +91,11 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
             
             // 파일 크기 MB 변환
             let sizeOnDisk = Int64(bitPattern: UInt64(unsignedInt64!))
-            let size = String(format: "%.2f", Double(sizeOnDisk) / (1024.0*1024.0))+" MB"
+            let fileSize = String(format: "%.2f", Double(sizeOnDisk) / (1024.0 * 1024.0))+" MB"
             
-            // 알림창 출력
-            alertFileInfo(fileName: fileName, fileSize: size)
+            // 파일 정보 알림창 출력
+            let message = "파일명 : \(fileName) \n파일 크기 : \(fileSize)"
+            presentAlert(title: "사진 정보", message: message)
         }
     }
 }

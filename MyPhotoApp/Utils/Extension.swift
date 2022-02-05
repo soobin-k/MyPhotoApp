@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    // 알림창
+    // 기본 알림창
     func presentAlert(title: String, message: String? = nil,
                       preferredStyle style: UIAlertController.Style = .alert,
                       handler: ((UIAlertAction) -> Void)? = nil) {
