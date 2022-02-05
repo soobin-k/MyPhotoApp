@@ -19,14 +19,27 @@ class AlbumListViewController: UIViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setTableView()
         
         // 사진 라이브러리 권한 요청
-        AlbumManager.shared.requestPhotoPermission(){ str in
-            // 앨범 리스트 가져오기
-            self.albumList = AlbumManager.shared.getAlbumList()
-            
-            // 테이블 뷰 세팅
-            self.setTableView()
+        AlbumManager.shared.requestPhotoPermission(){ result in
+            switch result {
+                case .success:
+                    // 앨범 리스트 가져오기
+                    self.albumList = AlbumManager.shared.getAlbumList()
+                    
+                    // 테이블 뷰 리로드
+                    DispatchQueue.main.async {
+                        self.tableView.isHidden = false
+                        self.tableView.reloadData()
+                    }
+                    break
+                    
+                case .fail:
+                    self.presentAlert(title: "권한 에러", message: "사진 접근 권한을 승인해주세요.")
+                    break
+            }
         }
     }
     
@@ -39,6 +52,7 @@ class AlbumListViewController: UIViewController {
         tableView.register(UINib(nibName: "AlbumListTableViewCell", bundle: nil),
                                    forCellReuseIdentifier: "AlbumListTableViewCell")
         tableView.tableFooterView = UIView()
+        tableView.isHidden = true
     }
     
     // 앨범 상세 페이지로 이동

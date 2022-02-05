@@ -11,6 +11,7 @@
 		C3518B8527AE684400759014 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3518B8427AE684400759014 /* AlbumDetailViewController.swift */; };
 		C3518B8927AE7D7A00759014 /* AlbumDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3518B8727AE7D7A00759014 /* AlbumDetailCollectionViewCell.swift */; };
 		C3518B8A27AE7D7A00759014 /* AlbumDetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3518B8827AE7D7A00759014 /* AlbumDetailCollectionViewCell.xib */; };
+		C3518B8D27AEC4BE00759014 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3518B8C27AEC4BE00759014 /* Extension.swift */; };
 		C36A312927AC27A7009F0B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A312827AC27A7009F0B69 /* AppDelegate.swift */; };
 		C36A312B27AC27A7009F0B69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A312A27AC27A7009F0B69 /* SceneDelegate.swift */; };
 		C36A312D27AC27A7009F0B69 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A312C27AC27A7009F0B69 /* AlbumListViewController.swift */; };
@@ -28,6 +29,7 @@
 		C3518B8427AE684400759014 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		C3518B8727AE7D7A00759014 /* AlbumDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3518B8827AE7D7A00759014 /* AlbumDetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumDetailCollectionViewCell.xib; sourceTree = "<group>"; };
+		C3518B8C27AEC4BE00759014 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		C36A312527AC27A7009F0B69 /* MyPhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36A312827AC27A7009F0B69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C36A312A27AC27A7009F0B69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				C3960AE627AD047800B47CB0 /* AlbumManager.swift */,
+				C3518B8C27AEC4BE00759014 /* Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				C36A312D27AC27A7009F0B69 /* AlbumListViewController.swift in Sources */,
 				C3518B8927AE7D7A00759014 /* AlbumDetailCollectionViewCell.swift in Sources */,
 				C36A312927AC27A7009F0B69 /* AppDelegate.swift in Sources */,
+				C3518B8D27AEC4BE00759014 /* Extension.swift in Sources */,
 				C36A312B27AC27A7009F0B69 /* SceneDelegate.swift in Sources */,
 				C3960AE427ACF60B00B47CB0 /* AlbumListTableViewCell.swift in Sources */,
 				C3518B8527AE684400759014 /* AlbumDetailViewController.swift in Sources */,

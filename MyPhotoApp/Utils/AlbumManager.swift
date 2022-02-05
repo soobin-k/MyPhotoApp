@@ -16,36 +16,36 @@ class AlbumManager {
     
     /**
      `requestPhotoPermission`: 사진 라이브러리 권한 요청 함수
-            - 권한 요청이 허용된 경우에만 앨범 리스트를 가져옴
+            - 권한 요청이 허용된 경우(success)에만 앨범 리스트를 가져옴
      */
-    func requestPhotoPermission(completion: @escaping(String?) -> Void) {
+    func requestPhotoPermission(completion: @escaping(PhotoAccess) -> Void) {
         
         let photoAuthorizationStatusStatus = PHPhotoLibrary.authorizationStatus()
         
         switch photoAuthorizationStatusStatus {
-            case .authorized:
-                completion("User permited")
+        
+            case .authorized: // 권한 승인
+                completion(.success)
                 
-            case .denied:
-                print("Photo Authorization status is denied.")
+            case .denied: // 권한 거부
+                completion(.fail)
                 
-            case .notDetermined:
-                print("Photo Authorization status is not determined.")
+            case .notDetermined: // 권한 승인 미실시
                 PHPhotoLibrary.requestAuthorization() { []
                     (status) in
                     switch status {
-                    case .authorized:
-                        completion("User permited")
-                    case .denied:
-                        print("User denied.")
-                        return
-                    default:
-                        return
+                        case .authorized:
+                            completion(.success) // 권한 승인
+                        case .denied:
+                            completion(.fail) // 권한 거부
+                            return
+                        default:
+                            return
                     }
                 }
                 
             case .restricted:
-                print("Photo Authorization status is restricted.")
+                completion(.fail) // 권한을 부여 X
                 
             default:
                 return
@@ -111,4 +111,8 @@ class AlbumManager {
             completion(result!)
         })
     }
+}
+
+enum PhotoAccess {
+    case success, fail // 권한 요청 허용, 미허용
 }
