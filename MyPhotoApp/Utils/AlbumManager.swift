@@ -75,6 +75,7 @@ class AlbumManager {
         // 즐겨찾는 항목
         let favoriteAlbum = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumFavorites, options: albumOptions)
         
+        // 타입 변환 후 앨범 리스트에 추가
         changeAlbumType(list: recentAlbum){ album in
             albumList.append(album)
         }
@@ -95,6 +96,7 @@ class AlbumManager {
         list.enumerateObjects { (collection, _, _) in
             let assets = PHAsset.fetchAssets(in: collection, options: .none)
             let album = Album(thumbnailImage: assets.firstObject, albumTitle: collection.localizedTitle, albumCount: assets.count, albumCollection: collection)
+            
             completion(album)
         }
     }

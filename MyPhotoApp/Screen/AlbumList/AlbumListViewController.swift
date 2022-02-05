@@ -19,8 +19,12 @@ class AlbumListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 사진 라이브러리 권한 요청
         AlbumManager.shared.requestPhotoPermission(){ str in
+            // 앨범 리스트 가져오기
             self.albumList = AlbumManager.shared.getAlbumList()
+            
+            // 테이블 뷰 세팅
             self.setTableView()
         }
     }
@@ -52,15 +56,15 @@ extension AlbumListViewController: UITableViewDataSource, UITableViewDelegate{
             cell.albumCountLabel.text = String(currentAlbum.albumCount)
             cell.albumTitleLabel.text = currentAlbum.albumTitle
             
+            // 썸네일 이미지 정보 얻어오기
             if let image = currentAlbum.thumbnailImage{
                 let option = PHImageRequestOptions()
                 PHImageManager.default().requestImage(for: image, targetSize: CGSize(width: 70, height: 70), contentMode: .default, options: option, resultHandler: {(result, info) -> Void in
                     cell.thumbnailImageView.image = result!
                 })
             }else{
-                cell.thumbnailImageView.image = #imageLiteral(resourceName: "defaultImage")
+                cell.thumbnailImageView.image = #imageLiteral(resourceName: "defaultImage") // 사진 개수가 0일때 디폴트 이미지
             }
-            
             return cell
         }
         return UITableViewCell()
