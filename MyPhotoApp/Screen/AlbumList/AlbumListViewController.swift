@@ -12,13 +12,17 @@ class AlbumListViewController: UIViewController {
     
     //MARK: - Property
     @IBOutlet weak var tableView: UITableView!
-//    var fetchResult: PHFetchResult<PHAsset> = PHFetchResult<PHAsset>()
-//    let imageManager: PHCachingImageManager = PHCachingImageManager()
     
+    var albumList = [Album]()
+
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTableView()
+        
+        AlbumManager.shared.requestPhotoPermission(){ str in
+            self.albumList = AlbumManager.shared.getAlbumList()
+            self.setTableView()
+        }
     }
     
     //MARK: - Action
@@ -35,12 +39,27 @@ class AlbumListViewController: UIViewController {
 extension AlbumListViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return albumList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumListTableViewCell") as? AlbumListTableViewCell {
+            
             cell.selectionStyle = .none
+            
+            let currentAlbum = albumList[indexPath.row]
+            
+            cell.albumCountLabel.text = String(currentAlbum.albumCount)
+            cell.albumTitleLabel.text = currentAlbum.albumTitle
+            
+            if let image = currentAlbum.thumbnailImage{
+                let option = PHImageRequestOptions()
+                PHImageManager.default().requestImage(for: image, targetSize: CGSize(width: 70, height: 70), contentMode: .default, options: option, resultHandler: {(result, info) -> Void in
+                    cell.thumbnailImageView.image = result!
+                })
+            }else{
+                cell.thumbnailImageView.image = #imageLiteral(resourceName: "defaultImage")
+            }
             
             return cell
         }
