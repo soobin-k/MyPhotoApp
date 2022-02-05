@@ -60,7 +60,7 @@ class AlbumDetailViewController: UIViewController {
 }
 
 // MARK: - Extension
-extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return albumCount
@@ -80,9 +80,14 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         // 한줄에 3개의 사진이 출력되도록 지정
-        let size = CGSize(width: (self.view.bounds.size.width) / 3, height:  (self.view.bounds.size.width) / 3)
-        return size
+        guard let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout else { return CGSize() }
+        
+        let numberOfCells: CGFloat = 3
+        let width = collectionView.frame.size.width - (flowLayout.minimumInteritemSpacing * (numberOfCells-1))
+        
+        return CGSize(width: width/(numberOfCells), height: width/(numberOfCells))
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
