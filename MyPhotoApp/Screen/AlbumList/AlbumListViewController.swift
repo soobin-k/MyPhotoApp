@@ -73,15 +73,15 @@ extension AlbumListViewController: UITableViewDataSource, UITableViewDelegate{
             cell.albumCountLabel.text = String(currentAlbum.albumCount)
             cell.albumTitleLabel.text = currentAlbum.albumTitle
             
-            // 썸네일 이미지 정보 얻어오기
+            // 썸네일 이미지 파일 가져오기
             if let image = currentAlbum.thumbnailImage{
-                let option = PHImageRequestOptions()
-                PHImageManager.default().requestImage(for: image, targetSize: CGSize(width: 70, height: 70), contentMode: .default, options: option, resultHandler: {(result, info) -> Void in
-                    cell.thumbnailImageView.image = result!
-                })
-            }else{
-                cell.thumbnailImageView.image = #imageLiteral(resourceName: "defaultImage") // 사진 개수가 0일때 디폴트 이미지
+                AlbumManager.shared.getAlbumImage(asset: image){ (image) in
+                    cell.thumbnailImageView.image = image
+                }
+            }else{ // 사진 개수가 0일 때 디폴트 이미지
+                cell.thumbnailImageView.image = #imageLiteral(resourceName: "defaultImage")
             }
+            
             return cell
         }
         return UITableViewCell()

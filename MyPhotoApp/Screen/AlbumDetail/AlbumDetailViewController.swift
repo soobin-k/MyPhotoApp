@@ -68,10 +68,12 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumDetailCollectionViewCell", for: indexPath) as? AlbumDetailCollectionViewCell {
-            let option = PHImageRequestOptions()
-            PHImageManager.default().requestImage(for: albumImageArray![indexPath.row], targetSize: CGSize(width: 70, height: 70), contentMode: .default, options: option, resultHandler: {(result, info) -> Void in
-                cell.albumImage.image = result!
-            })
+            
+            // 이미지 파일 가져오기
+            AlbumManager.shared.getAlbumImage(asset: albumImageArray![indexPath.row]){ (image) in
+                cell.albumImage.image = image
+            }
+    
             return cell
         }
         return UICollectionViewCell()
@@ -79,7 +81,7 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // 한줄에 3개의 사진이 출력되도록 지정
-        let size = CGSize(width: (self.view.bounds.size.width) / 3 , height:  (self.view.bounds.size.width) / 3)
+        let size = CGSize(width: (self.view.bounds.size.width) / 3, height:  (self.view.bounds.size.width) / 3)
         return size
     }
     

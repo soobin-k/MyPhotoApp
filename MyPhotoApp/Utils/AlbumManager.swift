@@ -100,4 +100,15 @@ class AlbumManager {
             completion(album)
         }
     }
+    
+    /**
+     `getAlbumImage`: 앨범 내 이미지 파일을 가져오는 함수
+     */
+    func getAlbumImage(asset: PHAsset, completion: @escaping(UIImage) -> Void){
+        let option = PHImageRequestOptions()
+        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 70, height: 70), contentMode: .default, options: option, resultHandler: {(result, info) in
+
+            completion(result!)
+        })
+    }
 }
