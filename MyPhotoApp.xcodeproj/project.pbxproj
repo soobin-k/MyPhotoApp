@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3518B8327AE67D100759014 /* AlbumDetailStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3518B8227AE67D100759014 /* AlbumDetailStoryboard.storyboard */; };
+		C3518B8527AE684400759014 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3518B8427AE684400759014 /* AlbumDetailViewController.swift */; };
 		C36A312927AC27A7009F0B69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A312827AC27A7009F0B69 /* AppDelegate.swift */; };
 		C36A312B27AC27A7009F0B69 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A312A27AC27A7009F0B69 /* SceneDelegate.swift */; };
 		C36A312D27AC27A7009F0B69 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36A312C27AC27A7009F0B69 /* AlbumListViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C3518B8227AE67D100759014 /* AlbumDetailStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlbumDetailStoryboard.storyboard; sourceTree = "<group>"; };
+		C3518B8427AE684400759014 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		C36A312527AC27A7009F0B69 /* MyPhotoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPhotoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36A312827AC27A7009F0B69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C36A312A27AC27A7009F0B69 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		C36A314027AC2D10009F0B69 /* AlbumDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C3518B8227AE67D100759014 /* AlbumDetailStoryboard.storyboard */,
+				C3518B8427AE684400759014 /* AlbumDetailViewController.swift */,
 			);
 			path = AlbumDetail;
 			sourceTree = "<group>";
@@ -178,6 +184,7 @@
 			files = (
 				C36A313527AC27A8009F0B69 /* LaunchScreen.storyboard in Resources */,
 				C3960AE127ACF50B00B47CB0 /* AlbumListStoryboard.storyboard in Resources */,
+				C3518B8327AE67D100759014 /* AlbumDetailStoryboard.storyboard in Resources */,
 				C36A313227AC27A8009F0B69 /* Assets.xcassets in Resources */,
 				C3960AE527ACF60B00B47CB0 /* AlbumListTableViewCell.xib in Resources */,
 			);
@@ -194,6 +201,7 @@
 				C36A312927AC27A7009F0B69 /* AppDelegate.swift in Sources */,
 				C36A312B27AC27A7009F0B69 /* SceneDelegate.swift in Sources */,
 				C3960AE427ACF60B00B47CB0 /* AlbumListTableViewCell.swift in Sources */,
+				C3518B8527AE684400759014 /* AlbumDetailViewController.swift in Sources */,
 				C3960AE727AD047800B47CB0 /* AlbumManager.swift in Sources */,
 				C3960AE927AD3EEC00B47CB0 /* Album.swift in Sources */,
 			);

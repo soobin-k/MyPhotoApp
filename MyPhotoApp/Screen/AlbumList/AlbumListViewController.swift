@@ -13,6 +13,7 @@ class AlbumListViewController: UIViewController {
     //MARK: - Property
     @IBOutlet weak var tableView: UITableView!
     
+    // 앨범 리스트 배열
     var albumList = [Album]()
 
     //MARK: - LifeCycle
@@ -30,12 +31,27 @@ class AlbumListViewController: UIViewController {
     }
     
     //MARK: - Action
+    
+    // 테이블 뷰 세팅
     func setTableView(){
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "AlbumListTableViewCell", bundle: nil),
                                    forCellReuseIdentifier: "AlbumListTableViewCell")
         tableView.tableFooterView = UIView()
+    }
+    
+    // 앨범 상세 페이지로 이동
+    func goAlbumDetail(album: Album){
+        let detailStoryboard = UIStoryboard(name: "AlbumDetailStoryboard", bundle: nil)
+        guard let detailVC = detailStoryboard.instantiateViewController(identifier: "AlbumDetailViewController") as? AlbumDetailViewController else {
+            return
+        }
+        
+        detailVC.albumCollection = album.albumCollection
+        detailVC.albumTitle = album.albumTitle ?? "제목 없음"
+
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
@@ -71,6 +87,7 @@ extension AlbumListViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            print("선택된 행은 \(indexPath.row) 입니다.")
+        // 셀 클릭 시 앨범 상세보기 페이지로 이동
+        goAlbumDetail(album: albumList[indexPath.row])
     }
 }
