@@ -50,7 +50,8 @@ class AlbumListViewController: UIViewController {
         
         detailVC.albumCollection = album.albumCollection
         detailVC.albumTitle = album.albumTitle ?? "제목 없음"
-
+        detailVC.albumCount = album.albumCount
+        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }

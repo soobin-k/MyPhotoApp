@@ -16,17 +16,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M29-Gm-nTM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="F4s-Vu-ANx"/>
-                                </items>
-                            </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nb9-J1-cik">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="mw0-A0-oj1">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="nb9-J1-cik" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="2yJ-e3-F7u"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nb9-J1-cik" secondAttribute="trailing" id="Fui-WY-xvC"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="nb9-J1-cik" secondAttribute="bottom" id="I6X-KT-CEU"/>
+                            <constraint firstItem="nb9-J1-cik" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="PwG-4D-Hgn"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="nb9-J1-cik" id="GtV-8e-Xry"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
