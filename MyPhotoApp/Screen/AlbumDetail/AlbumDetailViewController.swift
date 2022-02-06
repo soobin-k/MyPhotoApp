@@ -74,22 +74,9 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let resources = PHAssetResource.assetResources(for: albumAssets![indexPath.row])
-        
-        if let resource = resources.first {
-            // 파일 이름 가져오기
-            let fileName = resource.originalFilename
-            
-            // 파일 크기 가져오기
-            let unsignedInt64 = resource.value(forKey: "fileSize") as? CLong
-            
-            // 파일 크기 MB 변환
-            let sizeOnDisk = Int64(bitPattern: UInt64(unsignedInt64!))
-            let fileSize = String(format: "%.2f", Double(sizeOnDisk) / (1024.0 * 1024.0))+" MB"
-            
-            // 파일 정보 알림창 출력
-            let message = "파일명 : \(fileName) \n파일 크기 : \(fileSize)"
-            presentAlert(title: "사진 정보", message: message)
+        // 이미지 파일 정보 출력
+        AlbumManager.shared.getImageFileInfo(asset: albumAssets![indexPath.row]){ message in
+            self.presentAlert(title: "사진 정보", message: message)
         }
     }
 }

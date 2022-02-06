@@ -87,6 +87,7 @@ class AlbumManager {
     
     /**
      `changeAlbumType`: 타입을 PHAssetCollection 배열에서 Album으로 바꿔주는 함수
+        - 최신순으로 assets 정렬 포함
      */
     func changeAlbumType(list: PHFetchResult<PHAssetCollection>, completion: @escaping(Album) -> Void){
         list.enumerateObjects { (collection, _, _) in
@@ -110,6 +111,31 @@ class AlbumManager {
 
             completion(result!)
         })
+    }
+    
+    /**
+     `getImageFileInfo`: 앨범 내 이미지 파일 정보를 가져오는 함수
+         1. 파일 이름
+         2. 파일 크기(MB 변환)
+     */
+    func getImageFileInfo(asset: PHAsset, completion: @escaping(String) -> Void){
+        let resources = PHAssetResource.assetResources(for: asset)
+        
+        if let resource = resources.first {
+            // 파일 이름 가져오기
+            let fileName = resource.originalFilename
+            
+            // 파일 크기 가져오기
+            let unsignedInt64 = resource.value(forKey: "fileSize") as? CLong
+            
+            // 파일 크기 MB 변환
+            let sizeOnDisk = Int64(bitPattern: UInt64(unsignedInt64!))
+            let fileSize = String(format: "%.2f", Double(sizeOnDisk) / (1024.0 * 1024.0))+" MB"
+            
+            // 파일 정보 알림창 출력
+            let message = "파일명 : \(fileName) \n파일 크기 : \(fileSize)"
+            completion(message)
+        }
     }
 }
 
