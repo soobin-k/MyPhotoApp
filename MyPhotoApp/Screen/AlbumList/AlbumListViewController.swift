@@ -37,7 +37,7 @@ class AlbumListViewController: UIViewController {
                     break
                     
                 case .fail:
-                    self.presentAlert(title: "권한 에러", message: "사진 접근 권한을 승인해주세요.")
+                    self.presentAlert(title: "권한 에러", message: "사진 접근 권한을 승인해주세요.", isDoneTitle: "설정으로 이동", isCancelActionIncluded: true, handler: self.photoPermissionHandler)
                     break
             }
         }
@@ -67,6 +67,13 @@ class AlbumListViewController: UIViewController {
         detailVC.albumCount = album.albumCount
         
         self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    // 사진 권한 설정 페이지로 이동
+    func photoPermissionHandler(alert: UIAlertAction!) {
+        if let url = URL(string: UIApplication.openSettingsURLString){
+            UIApplication.shared.open(url)
+        }
     }
 }
 
