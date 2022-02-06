@@ -82,19 +82,8 @@ extension AlbumListViewController: UITableViewDataSource, UITableViewDelegate{
             
             cell.selectionStyle = .none
             
-            let currentAlbum = albumList[indexPath.row]
-            
-            cell.albumCountLabel.text = String(currentAlbum.albumCount)
-            cell.albumTitleLabel.text = currentAlbum.albumTitle
-            
-            // 썸네일 이미지 파일 가져오기
-            if let image = currentAlbum.thumbnailImage{
-                AlbumManager.shared.getAlbumImage(asset: image){ (image) in
-                    cell.thumbnailImageView.image = image
-                }
-            }else{ // 사진 개수가 0일 때 디폴트 이미지
-                cell.thumbnailImageView.image = #imageLiteral(resourceName: "defaultImage")
-            }
+            // 셀 값 설정
+            cell.setCell(currentAlbum: albumList[indexPath.row])
             
             return cell
         }

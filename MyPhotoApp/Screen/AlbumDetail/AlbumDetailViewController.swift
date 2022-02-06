@@ -53,10 +53,8 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumDetailCollectionViewCell", for: indexPath) as? AlbumDetailCollectionViewCell {
             
-            // 이미지 파일 가져오기
-            AlbumManager.shared.getAlbumImage(asset: albumAssets![indexPath.row]){ (image) in
-                cell.albumImage.image = image
-            }
+            // 셀 값 설정
+            cell.setCell(currentAsset: albumAssets![indexPath.row])
     
             return cell
         }

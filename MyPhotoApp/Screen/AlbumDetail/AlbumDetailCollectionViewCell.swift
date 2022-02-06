@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class AlbumDetailCollectionViewCell: UICollectionViewCell {
 
@@ -18,4 +19,12 @@ class AlbumDetailCollectionViewCell: UICollectionViewCell {
     }
 
     //MARK: - Action
+    
+    // 셀 값 설정 함수
+    func setCell(currentAsset: PHAsset){
+        // 이미지 파일 가져오기
+        AlbumManager.shared.getAlbumImage(asset: currentAsset){ (image) in
+            self.albumImage.image = image
+        }
+    }
 }
