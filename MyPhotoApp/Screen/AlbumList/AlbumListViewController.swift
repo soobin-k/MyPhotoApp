@@ -62,7 +62,7 @@ class AlbumListViewController: UIViewController {
             return
         }
         
-        detailVC.albumCollection = album.albumCollection
+        detailVC.albumAssets = album.albumAssets
         detailVC.albumTitle = album.albumTitle ?? "제목 없음"
         detailVC.albumCount = album.albumCount
         

@@ -14,9 +14,6 @@ class AlbumDetailViewController: UIViewController {
     // 사진 목록
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // 앨범 콜렉션
-    var albumCollection = PHAssetCollection()
-
     // 앨범 제목
     var albumTitle = String()
     
@@ -24,7 +21,7 @@ class AlbumDetailViewController: UIViewController {
     var albumCount = Int()
     
     // 앨범 이미지 배열
-    var albumImageArray: PHFetchResult<PHAsset>?
+    var albumAssets: PHFetchResult<PHAsset>?
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -39,7 +36,6 @@ class AlbumDetailViewController: UIViewController {
     }
     
     func setCollectionView(){
-        albumImageArray = PHAsset.fetchAssets(in: albumCollection, options: .none)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "AlbumDetailCollectionViewCell", bundle: nil),
@@ -58,7 +54,7 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumDetailCollectionViewCell", for: indexPath) as? AlbumDetailCollectionViewCell {
             
             // 이미지 파일 가져오기
-            AlbumManager.shared.getAlbumImage(asset: albumImageArray![indexPath.row]){ (image) in
+            AlbumManager.shared.getAlbumImage(asset: albumAssets![indexPath.row]){ (image) in
                 cell.albumImage.image = image
             }
     
@@ -80,7 +76,7 @@ extension AlbumDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let resources = PHAssetResource.assetResources(for: albumImageArray![indexPath.row])
+        let resources = PHAssetResource.assetResources(for: albumAssets![indexPath.row])
         
         if let resource = resources.first {
             // 파일 이름 가져오기

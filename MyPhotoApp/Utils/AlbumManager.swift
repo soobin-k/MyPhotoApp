@@ -55,25 +55,21 @@ class AlbumManager {
     /**
      `getAlbumList`: 앨범 리스트를 가져오는 함수
         1. 최근 항목
-        2. 사용자 지정 앨범(최신순 정렬)
+        2. 사용자 지정 앨범
         3. 즐겨찾는 항목
      */
     func getAlbumList() -> [Album] {
 
-        // 최신순 정렬
-        let albumOptions = PHFetchOptions()
-        albumOptions.sortDescriptors = [NSSortDescriptor(key: "endDate", ascending: true)]
-
         var albumList = [Album]()
         
         // 최근 항목
-        let recentAlbum = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: albumOptions)
+        let recentAlbum = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: .none)
         
         // 사용자 지정 앨범
-        let userAlbum = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: albumOptions)
+        let userAlbum = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: .none)
         
         // 즐겨찾는 항목
-        let favoriteAlbum = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumFavorites, options: albumOptions)
+        let favoriteAlbum = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumFavorites, options: .none)
         
         // 타입 변환 후 앨범 리스트에 추가
         changeAlbumType(list: recentAlbum){ album in
@@ -94,8 +90,12 @@ class AlbumManager {
      */
     func changeAlbumType(list: PHFetchResult<PHAssetCollection>, completion: @escaping(Album) -> Void){
         list.enumerateObjects { (collection, _, _) in
-            let assets = PHAsset.fetchAssets(in: collection, options: .none)
-            let album = Album(thumbnailImage: assets.firstObject, albumTitle: collection.localizedTitle, albumCount: assets.count, albumCollection: collection)
+            // 최신순 정렬
+            let albumOptions = PHFetchOptions()
+            albumOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+            
+            let assets = PHAsset.fetchAssets(in: collection, options: albumOptions)
+            let album = Album(thumbnailImage: assets.firstObject, albumTitle: collection.localizedTitle, albumCount: assets.count, albumAssets: assets)
             
             completion(album)
         }
@@ -113,6 +113,7 @@ class AlbumManager {
     }
 }
 
+// 사진 라이브러리 접근 권한 타입
 enum PhotoAccess {
     case success, fail // 권한 요청 허용, 미허용
 }

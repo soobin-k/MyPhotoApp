@@ -15,7 +15,6 @@ class AlbumDetailCollectionViewCell: UICollectionViewCell {
     //MARK: - LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     //MARK: - Action
