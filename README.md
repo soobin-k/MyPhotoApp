@@ -1,7 +1,5 @@
 # 나의 사진첩 앱 <img width=28px src=https://user-images.githubusercontent.com/77331348/152672188-99afe52b-d728-4909-ac5a-a7f8cb13f340.png>
 
->**플로우 iOS 사전 과제**
-
 ## 📌 시연 영상
 
 <img width="250" src="./시연 영상/미리보기1.gif"> <img width="250" src="./시연 영상/미리보기2.gif">
